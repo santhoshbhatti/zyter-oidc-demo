@@ -36,10 +36,18 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter{
 	    super.configure(http);
 	    http
 	        .authorizeRequests()
+	        .antMatchers("/ws-endpoint/**").permitAll()
 	        .antMatchers("/books").hasAnyRole("ADMIN", "PROVIDER","PATIENT")
 	        .antMatchers("/manager").hasRole("ADMIN")
 	        .anyRequest().permitAll();
+	    
+	    http.sessionManagement(session -> session
+	            .invalidSessionUrl("/")
+	        );
+	        
 	}
+	
+
 	
 	@Bean
 	@Override
