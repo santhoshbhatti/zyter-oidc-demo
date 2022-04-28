@@ -46,6 +46,12 @@ public class LibraryController {
 		model.addAttribute("books", bookRepository.readAll());
 		return "manager";
 	}
+	
+	@GetMapping(value = "/chat")
+	public String getChat(Model model) {
+		
+		return "chat";
+	}
 
 	@GetMapping(value = "/logout")
 	public String logout() throws ServletException {
